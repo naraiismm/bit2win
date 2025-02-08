@@ -55,7 +55,7 @@ class RegisterPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Register', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFF59498))),
+            Text('Register', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFC6269E))),
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(labelText: 'Name', border: OutlineInputBorder()),

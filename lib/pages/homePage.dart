@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       
       body: Center(
         child: SingleChildScrollView(
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: onGenerateQR,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Color(0xFFC6269E),
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 5),
             Text(
               value,
-              style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+              style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
           ],
         ),

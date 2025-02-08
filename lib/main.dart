@@ -51,15 +51,15 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xFFF59498),
-        scaffoldBackgroundColor: Color(0xFFFFEAEA),
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xFFF59498),
+          backgroundColor: Color(0xFFC6269E),
           foregroundColor: Colors.white,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: Color(0xFFD47A7C),
-          unselectedItemColor: Colors.grey,
-          backgroundColor: Color(0xFFF59498),
+          unselectedItemColor: Colors.white,
+          backgroundColor: Color(0xFFC6269E),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
               ? QRCodeGeneratorPage()
               : Scaffold(
                   appBar: AppBar(
-                    title: Text('Recycle App'),
+                    title: Text('Bin2Win'),
                     actions: [
                       IconButton(
                         icon: Icon(Icons.notifications),
