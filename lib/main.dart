@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
               ? QRCodeGeneratorPage()
               : Scaffold(
                   appBar: AppBar(
-                    title: Text('Recycle App'),
+                    title: Text('Bin2Win'),
                     actions: [
                       IconButton(
                         icon: Icon(Icons.notifications),
