@@ -1,6 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.impulse_app">
 
+    <!-- Required permissions for location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    
     <application
         android:label="Bin2Win"
         android:name="${applicationName}"
@@ -27,12 +34,17 @@
             </intent-filter>
         </activity>
 
-        <!-- Google Maps API Key -->
+        <!-- ✅ Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDwXZHgrJJyg4a3g_vl_aHPh6jimsumu2k"/>
+            android:value="AIzaSyAp0KMeX_GjlmeovhMCFrrR7RvMQzTS0B0"/>
+        
+        <!-- ✅ Required for Google Play Services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
 
-        <!-- Required for Flutter Plugins -->
+        <!-- ✅ Required for Flutter Plugins -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2"/>

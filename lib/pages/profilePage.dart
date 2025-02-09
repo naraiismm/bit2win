@@ -15,48 +15,47 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
       extendBodyBehindAppBar: true,
-      body: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFFF59498), Color(0xFFC6269E)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+      body: SingleChildScrollView(  // ✅ Fixed overflow issue
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFFF59498), Color(0xFFC6269E)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(40)),
               ),
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(40)),
-            ),
-            padding: EdgeInsets.only(top: 60, bottom: 40),
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.person, size: 50, color: Colors.grey),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  "Anna Avetisyan",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              padding: EdgeInsets.only(top: 60, bottom: 40),
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person, size: 50, color: Colors.grey),
                   ),
-                ),
-              ],
+                  SizedBox(height: 10),
+                  Text(
+                    "Narmin Suleyman",  // ✅ Updated Name
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          Expanded(
-            child: Padding(
+            SizedBox(height: 20),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  _buildProfileItem(Icons.person, "Anna Avetisyan"),
+                  _buildProfileItem(Icons.person, "Narmin Suleyman"),  // ✅ Updated Name
                   _buildProfileItem(Icons.cake, "Birthday"),
                   _buildProfileItem(Icons.phone, "818 123 4567"),
-                  _buildProfileItem(Icons.camera_alt, "Instagram account"),
                   _buildProfileItem(Icons.email, "info@aplusdesign.co"),
                   _buildProfileItem(Icons.lock, "Password", isPassword: true),
                   SizedBox(height: 20),
@@ -64,21 +63,21 @@ class ProfilePage extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                      backgroundColor: Color(0xFFF59498),
+                      backgroundColor:Color(0xFFFFFFFF),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                     child: Text(
                       "Edit Profile",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Color(0xFFC6269E)),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

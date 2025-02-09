@@ -9,6 +9,7 @@ class QRCodeGeneratorPage extends StatefulWidget {
 
 class _QRCodeGeneratorPageState extends State<QRCodeGeneratorPage> {
   String _qrData = "";
+  bool _isActive = false;
 
   String _generateRandomQRCode() {
     final random = Random();
@@ -18,6 +19,7 @@ class _QRCodeGeneratorPageState extends State<QRCodeGeneratorPage> {
   void _generateQR() {
     setState(() {
       _qrData = _generateRandomQRCode();
+      _isActive = true;
     });
   }
 
@@ -31,11 +33,10 @@ class _QRCodeGeneratorPageState extends State<QRCodeGeneratorPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Click the button to generate a QR Code", style: TextStyle(fontSize: 18)),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _generateQR,
-              child: Text("Generate QR Code"),
+            Text(
+              "Click the button to generate a QR Code",
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             _qrData.isNotEmpty
@@ -43,8 +44,19 @@ class _QRCodeGeneratorPageState extends State<QRCodeGeneratorPage> {
                     data: _qrData,
                     size: 200,
                     backgroundColor: Colors.white,
+                    foregroundColor: _isActive ? Colors.black : Colors.grey, // Greyed out if inactive
                   )
-                : Container(),
+                : QrImageView(
+                    data: "Inactive",
+                    size: 200,
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.grey,
+                  ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _generateQR,
+              child: Text("Generate QR Code"),
+            ),
           ],
         ),
       ),
