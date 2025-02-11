@@ -7,11 +7,11 @@ class HomePage extends StatelessWidget {
   HomePage({super.key, required this.onGenerateQR});
 
   final List<String> _partners = [
-    'lib/assets/images/image.png',
-    'lib/assets/images/image.png',
-    'lib/assets/images/image.png',
-    'lib/assets/images/image.png',
-    'lib/assets/images/image.png',
+    'lib/assets/images/bonaqua.jpeg',
+    'lib/assets/images/cola.jpeg',
+    'lib/assets/images/nestle.jpeg',
+    'lib/assets/images/sirab.png',
+    'lib/assets/images/sprite.jpeg',
   ];
 
   @override
@@ -24,6 +24,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Image Banner
+              Image.asset(
+                'lib/assets/images/image (1).png', // Make sure to have the correct image path
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+              const SizedBox(height: 20),
+              
               // Bonus & Items Cards in a Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
