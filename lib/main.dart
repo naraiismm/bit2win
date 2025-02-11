@@ -1,9 +1,12 @@
+
 import 'package:flutter/material.dart';
+import 'package:impulse_app/pages/landingPage.dart';
 import 'package:impulse_app/pages/homePage.dart';
 import 'package:impulse_app/pages/loginPage.dart';
 import 'package:impulse_app/pages/profilePage.dart';
 import 'package:impulse_app/pages/qrCodePage.dart';
 import 'package:impulse_app/pages/stationPage.dart';
+import 'package:impulse_app/pages/registerPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,25 +20,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
   bool _isLoggedIn = false;
-  bool _isRegistering = false;
   bool _showQRPage = false;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       _showQRPage = false;
-    });
-  }
-
-  void _toggleAuthState() {
-    setState(() {
-      _isLoggedIn = !_isLoggedIn;
-    });
-  }
-
-  void _toggleRegister() {
-    setState(() {
-      _isRegistering = !_isRegistering;
     });
   }
 
@@ -50,71 +40,81 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xFFF59498),
-        scaffoldBackgroundColor: Color(0xFFFFEAEA),
+        primaryColor: Color(0xFFC6269E),
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xFFF59498),
-          foregroundColor: Colors.white,
+          backgroundColor: Colors.white,
+          elevation: 1, // ✅ Light shadow for better UX
+          centerTitle: false, // ✅ Title aligned to the left
+          titleTextStyle: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFC6269E),
+          ),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Color(0xFFD47A7C),
+          selectedItemColor: Color(0xFFC6269E),
           unselectedItemColor: Colors.grey,
-          backgroundColor: Color(0xFFF59498),
+          backgroundColor: Colors.white,
+          elevation: 10,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFFF59498),
-            foregroundColor: Colors.white,
+            backgroundColor: Colors.white,
+            foregroundColor: Color(0xFFC6269E),
+            side: BorderSide(color: Color(0xFFC6269E), width: 2),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(30),
             ),
           ),
         ),
       ),
-      home: _isLoggedIn
-          ? (_showQRPage
-              ? QRCodeGeneratorPage()
-              : Scaffold(
-                  appBar: AppBar(
-                    title: Text('Recycle App'),
-                    actions: [
-                      IconButton(
-                        icon: Icon(Icons.notifications),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.settings),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  body: IndexedStack(
-                    index: _selectedIndex,
-                    children: [
-                      HomePage(onGenerateQR: _navigateToQRPage),
-                      StationsPage(),
-                      ProfilePage(),
-                    ],
-                  ),
-                  bottomNavigationBar: BottomNavigationBar(
-                    items: <BottomNavigationBarItem>[
-                      BottomNavigationBarItem(
-                          icon: Icon(Icons.home), label: 'Home'),
-                      BottomNavigationBarItem(
-                          icon: Icon(Icons.map), label: 'Stations'),
-                      BottomNavigationBarItem(
-                          icon: Icon(Icons.person), label: 'Profile'),
-                    ],
-                    currentIndex: _selectedIndex,
-                    selectedItemColor: Colors.blue,
-                    onTap: _onItemTapped,
-                  ),
-                ))
-          : _isRegistering
-              ? RegisterPage(onToggleLogin: _toggleRegister)
-              : LoginPage(
-                  onToggleRegister: _toggleRegister,
-                  onLoginSuccess: _toggleAuthState),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => LandingPage(),
+        "/login": (context) => LoginPage(
+              onToggleRegister: () => Navigator.pushReplacementNamed(context, "/signup"),
+            ),
+        "/signup": (context) => RegisterPage(
+              onToggleLogin: () => Navigator.pushReplacementNamed(context, "/login"),
+            ),
+        "/home": (context) => Scaffold(
+              appBar: _selectedIndex == 2
+                  ? null // ✅ REMOVE AppBar in ProfilePage
+                  : AppBar(
+                      title: Text("Bin2Win"),
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.notifications, color: Color(0xFFC6269E)),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.settings, color: Color(0xFFC6269E)),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+              body: IndexedStack(
+                index: _selectedIndex,
+                children: [
+                  HomePage(onGenerateQR: _navigateToQRPage),
+                  StationsPage(),
+                  ProfilePage(),
+                ],
+              ),
+              bottomNavigationBar: BottomNavigationBar(
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                  BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Stations'),
+                  BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+                ],
+                currentIndex: _selectedIndex,
+                selectedItemColor: Color(0xFFC6269E),
+                unselectedItemColor: Colors.grey,
+                onTap: _onItemTapped,
+              ),
+            ),
+      },
     );
   }
 }
